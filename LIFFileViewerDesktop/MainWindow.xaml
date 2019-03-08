@@ -5,8 +5,151 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LIFFileViewerDesktop"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="RaceReg LIF File Viewer" Height="600" Width="800">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="Exit" Command="ExitCommand" />
+            </MenuItem>
+        </Menu>
+        <StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Image Grid.Column="0"
+               Grid.Row="0"
+               Margin="5"
+               Source="Images/RaceRegLogo_TimingAndRegistration.png"
+               Height="100"
+               Width="100"
+               HorizontalAlignment="Left"/>
+
+                <TextBlock Grid.Column="1"
+                Grid.Row="0"
+                Text="RaceReg LIF File Viewer"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                FontSize="30"/>
+            </Grid>
+
+
+            <Separator Height="10" />
+
+            <DockPanel>
+                <StackPanel Width="150" DockPanel.Dock="Left">
+                    <Button Content="Select Directory"
+                    Width="110"
+                    Margin="5"
+                    Command="{Binding LoadLIFDirectory}"/>
+
+                    <Button Content="Load Selected File"
+                    Width="110"
+                    Margin="5"
+                    Command="{Binding LoadLIFFile}"/>
+
+                    <TextBlock Text="LIF Files:"
+                    HorizontalAlignment="Center"
+                    Margin="5"/>
+
+                    <!--<ListBox Items="{Binding FilesInCurrentDirectory}"
+                   SelectedItem="{Binding SelectedFile}"/>-->
+                </StackPanel>
+                <StackPanel Margin="10">
+                    <TextBlock Text="Selected LIF File Information:"
+                     HorizontalAlignment="Center"
+                     FontSize="16"/>
+
+                    <Grid Margin="0 15 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Column="0"
+               Grid.Row="0"
+               Text="Race Name:" />
+
+                        <TextBlock Grid.Column="1"
+               Grid.Row="0"
+               Text="{Binding lif.EventName}" />
+
+                        <TextBlock Grid.Column="0"
+               Grid.Row="1"
+               Text="Start Time:" />
+
+                        <TextBlock Grid.Column="1"
+               Grid.Row="1"
+               Text="{Binding lif.StartTime}" />
+
+                        <TextBlock Grid.Column="2"
+               Grid.Row="0"
+               Text="Race ID:" />
+
+                        <TextBlock Grid.Column="3"
+               Grid.Row="0"
+               Text="{Binding lif.EventId}" />
+
+                        <TextBlock Grid.Column="2"
+               Grid.Row="1"
+               Text="Round #:" />
+
+                        <TextBlock Grid.Column="3"
+               Grid.Row="1"
+               Text="{Binding lif.RoundId}" />
+
+                        <TextBlock Grid.Column="2"
+               Grid.Row="3"
+               Text="Heat #:" />
+
+                        <TextBlock Grid.Column="3"
+               Grid.Row="3"
+               Text="{Binding lif.HeatId}" />
+
+                        <TextBlock Grid.Column="0"
+               Grid.Row="4"
+               Text="Distance (meters):" />
+
+                        <TextBlock Grid.Column="1"
+               Grid.Row="4"
+               Text="{Binding lif.EventDistance}" />
+                    </Grid>
+                    <Separator Height="10" />
+
+                    <!--
+                    <ListBox Items="{Binding lif.Entries}"
+                   SelectedItem="{Binding lif.SelectedEntry}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="(" />
+                                    <TextBlock Text="{Binding Place}" />
+                                    <TextBlock Text=")" Margin="0 0 10 0"/>
+                                    <TextBlock Text="{Binding FirstName}" Margin="0 0 3 0"/>
+                                    <TextBlock Text="{Binding LastName}" Margin="0 0 3 0"/>
+                                    <TextBlock Text="[" />
+                                    <TextBlock Text="{Binding Time}" />
+                                    <TextBlock Text="]" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>-->
+                </StackPanel>
+            </DockPanel>
+        </StackPanel>
+    </DockPanel>
 </Window>
