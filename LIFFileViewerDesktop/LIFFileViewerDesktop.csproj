@@ -69,6 +69,8 @@
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Compile Include="Data\DefaultDataService.cs" />
+    <Compile Include="Data\IDataService.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="MainWindow.xaml">
@@ -115,6 +117,12 @@
     <Resource Include="Images\RaceRegLogo_TimingAndRegistration.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RaceRegAssistant\RaceRegAssistant.csproj">
+      <Project>{03BDFE52-3BF3-485D-B510-87EEE228E145}</Project>
+      <Name>RaceRegAssistant</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

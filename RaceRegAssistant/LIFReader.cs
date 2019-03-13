@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using LIFFileViewer.Model;
 
-namespace LIFFileViewer.LIFTools
+namespace RaceRegAssistant
 {
     public class LIFReader
     {

@@ -1,7 +1,5 @@
 ﻿using LIFFileViewer.Data;
 using LIFFileViewer.Interfaces;
-using LIFFileViewer.LIFTools;
-using LIFFileViewer.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Text;
 using LIFFileViewer.Model;
 
-namespace LIFFileViewer.LIFTools
+namespace RaceRegAssistant
 {
     public class LIF : INotifyPropertyChanged
     {

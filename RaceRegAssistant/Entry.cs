@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LIFFileViewer.Model
+namespace RaceRegAssistant
 {
     public class Entry
     {
