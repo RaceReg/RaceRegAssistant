@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 using System.Threading.Tasks;
-using LIFFileViewer.Model;
 
 namespace RaceRegAssistant
 {
@@ -20,9 +19,9 @@ namespace RaceRegAssistant
             AnalyzeAndLoad();
         }
 
-        private async void AnalyzeAndLoad()
+        private void AnalyzeAndLoad()
         {
-            string[] lines = await System.IO.File.ReadAllLinesAsync(lifFILE);
+            string[] lines = System.IO.File.ReadAllLines(lifFILE);
 
             LoadFirstLine(lines[0]);
             LoadEntries(lines);

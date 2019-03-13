@@ -1,10 +1,10 @@
-﻿using Avalonia.Controls;
-using LIFFileViewer.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using RaceRegAssistant;
 
 namespace LIFFileViewerDesktop.Data
 {
@@ -15,37 +15,33 @@ namespace LIFFileViewerDesktop.Data
             return File.Exists(lifFILE);
         }
 
-        public async Task<string> FindDirectoryAsync()
+        public string FindDirectory()
         {
-            var openFolderDialog = new OpenFolderDialog()
-            {
-                Title = "Select Directory  LIF results file:",
+            var openFolderDialog = new FolderBrowserDialog()
+            { 
+                Description = "Select Directory  LIF results file:",
                 //Filters = { "*.lif" };
             };
 
-            var path = await openFolderDialog.ShowAsync();
-
-            if (!string.Equals(path, "") && path != null)
+            if (openFolderDialog.ShowDialog() == DialogResult.OK)
             {
-                return path;
+                return openFolderDialog.SelectedPath;
             }
             return null;
         }
 
-        public async Task<string> FindFileAsync()
+        public string FindFile()
         {
             var openFileDialog = new OpenFileDialog()
             {
-                AllowMultiple = false,
+                Multiselect=false,
                 Title = "Select FinishLynx LIF results file:",
                 //Filters = { "*.lif" };
             };
 
-            var pathArray = await openFileDialog.ShowAsync();
-
-            if((pathArray?.Length ?? 0) > 0)
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                return pathArray[0];
+                return openFileDialog.FileName;
             }
             return null;
         }

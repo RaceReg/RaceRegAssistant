@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace LIFFileViewerDesktop.ViewModel
 {
@@ -40,12 +41,12 @@ namespace LIFFileViewerDesktop.ViewModel
         //}
 
         //Default Constructor
-        public MainViewModel() : this(new DefaultDataService(), true) { }
+        //public MainViewModel() : this(new DefaultDataService(), true) { }
 
-        public MainViewModel(IDataService data, bool shouldReturnDirectoryFiles)
+        public MainViewModel(IDataService data)
         {
             this.data = data;
-            this.shouldReturnDirectoryFiles = shouldReturnDirectoryFiles;
+            this.shouldReturnDirectoryFiles = true;
             FilesInCurrentDirectory = new ObservableCollection<string>();
             CurrentDirectory = "";
             SelectedFile = "";
@@ -111,10 +112,9 @@ namespace LIFFileViewerDesktop.ViewModel
 
         private RelayCommand findAndLoadLIFFile;
         public RelayCommand FindAndLoadLIFFile => findAndLoadLIFFile ?? (findAndLoadLIFFile = new RelayCommand(
-            () => !IsBusy,
-            async () =>
+            () =>
             {
-                LIFFilePath = await data.FindFileAsync();
+                LIFFilePath = data.FindFile();
                 CurrentDirectory = Path.GetDirectoryName(LIFFilePath);
 
                 LoadLIFFile.RaiseCanExecuteChanged();
@@ -127,19 +127,21 @@ namespace LIFFileViewerDesktop.ViewModel
                 if (!IsBusy && data.FileExists(LIFFilePath))
                 {
                     IsBusy = true;
-                    Lif = await data.GetEntriesFromLIFAsync(LIFFilePath);
+                    Lif = data.GetEntriesFromLIFAsync(LIFFilePath).GetAwaiter().GetResult();
 
                     IsBusy = false;
                 }
-            }
+            },
+            () => !IsBusy
             ));
 
         private RelayCommand findLIFFile;
         public RelayCommand FindLIFFile => findLIFFile ?? (findLIFFile = new RelayCommand(
-            () => !IsBusy,
-            async () =>
+            () =>
             {
-                LIFFilePath = await data.FindFileAsync();
+                LIFFilePath = data.FindFile();
+                if (LIFFilePath == null)
+                    return;
                 CurrentDirectory = Path.GetDirectoryName(LIFFilePath);
                 if (shouldReturnDirectoryFiles)
                 {
@@ -147,7 +149,8 @@ namespace LIFFileViewerDesktop.ViewModel
                 }
                 LoadLIFFile.RaiseCanExecuteChanged();
                 LoadLIFDirectory.RaiseCanExecuteChanged();
-            }
+            },
+            () => !IsBusy
             ));
 
         private void LoadDirectoryContents()
@@ -179,30 +182,30 @@ namespace LIFFileViewerDesktop.ViewModel
 
         private RelayCommand loadLIFDirectory;
         public RelayCommand LoadLIFDirectory => loadLIFDirectory ?? (loadLIFDirectory = new RelayCommand(
-            () => !IsBusy,
-            async () =>
+            () =>
             {
-                CurrentDirectory = await data.FindDirectoryAsync();
+                CurrentDirectory = data.FindDirectory();
                 if (shouldReturnDirectoryFiles)
                 {
                     LoadDirectoryContents();
                 }
                 LoadLIFFile.RaiseCanExecuteChanged();
                 LoadLIFDirectory.RaiseCanExecuteChanged();
-            }
+            },
+            () => !IsBusy
             ));
 
         private RelayCommand loadLIFFile;
-        public RelayCommand LoadLIFFile => loadLIFFile ?? (loadLIFFile = new RelayCommand(
-            () => !IsBusy, //sees if we can read in a LIF file
-            async () =>
+        public RelayCommand LoadLIFFile => loadLIFFile ?? (loadLIFFile = new RelayCommand(            
+            () =>
             {
                 IsBusy = true;
                 LIFFilePath = Path.Combine(CurrentDirectory, SelectedFile);
-                Lif = await data.GetEntriesFromLIFAsync(LIFFilePath);
+                Lif = data.GetEntriesFromLIFAsync(LIFFilePath).GetAwaiter().GetResult();
 
                 IsBusy = false;
-            }
+            },
+            () => !IsBusy //sees if we can read in a LIF file
             ));
 
         private bool isBusy;

@@ -3,14 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:GalaSoft.MvvmLight;assembly=GalaSoft.MvvmLight"
         xmlns:local="clr-namespace:LIFFileViewerDesktop"
         mc:Ignorable="d"
-        Title="RaceReg LIF File Viewer" Height="600" Width="800"
-        DataContext="ViewModel/MainViewModel">
+        DataContext="{Binding Main, Source={StaticResource Locator}}"
+        Title="RaceReg LIF File Viewer" Height="600" Width="800">
+    
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="File">
-                <MenuItem Header="Exit" Command="ExitCommand" />
+                <MenuItem Header="Exit" Command="{Binding ExitCommand}" />
             </MenuItem>
         </Menu>
         <StackPanel>

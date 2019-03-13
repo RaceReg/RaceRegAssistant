@@ -12,7 +12,7 @@ namespace LIFFileViewerDesktop.Data
     {
         Task<LIF> GetEntriesFromLIFAsync(string lifFILE);
         bool FileExists(string lifFILE);
-        Task<string> FindFileAsync();
-        Task<string> FindDirectoryAsync();
+        string FindFile();
+        string FindDirectory();
     }
 }
