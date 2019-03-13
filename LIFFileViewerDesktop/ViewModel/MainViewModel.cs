@@ -40,9 +40,6 @@ namespace LIFFileViewerDesktop.ViewModel
         //    ///
         //}
 
-        //Default Constructor
-        //public MainViewModel() : this(new DefaultDataService(), true) { }
-
         public MainViewModel(IDataService data)
         {
             this.data = data;
