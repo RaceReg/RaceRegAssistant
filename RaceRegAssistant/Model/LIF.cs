@@ -4,12 +4,12 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
 
-namespace RaceRegAssistant
+namespace RaceRegAssistant.Model
 {
     public class LIF : INotifyPropertyChanged
     {
-        private ObservableCollection<Entry> entries;
-        public ObservableCollection<Entry> Entries
+        private ObservableCollection<LIFEntry> entries;
+        public ObservableCollection<LIFEntry> Entries
         {
             get
             {
@@ -22,8 +22,8 @@ namespace RaceRegAssistant
             }
         }
 
-        private Entry selectedEntry;
-        public Entry SelectedEntry
+        private LIFEntry selectedEntry;
+        public LIFEntry SelectedEntry
         {
             get
             {
@@ -31,6 +31,7 @@ namespace RaceRegAssistant
             }
             set
             {
+                Set(ref selectedEntry, value);
                 selectedEntry = value;
                 OnPropertyChanged(nameof(SelectedEntry));
             }
@@ -45,21 +46,10 @@ namespace RaceRegAssistant
 
         public LIF()
         {
-            entries = new ObservableCollection<Entry>();
-
-            //var tempEntry = new Entry();
-            //tempEntry.Place = 1;
-            //tempEntry.RacerId = 0001;
-            //tempEntry.Lane = 1;
-            //tempEntry.LastName = "Porter";
-            //tempEntry.FirstName = "Jackson";
-            //tempEntry.Affiliation = "SC";
-            //tempEntry.Time = DateTime.Now;
-
-            //entries.Add(tempEntry);
+            entries = new ObservableCollection<LIFEntry>();
         }
 
-        internal void AddEntry(Entry entry)
+        internal void AddEntry(LIFEntry entry)
         {
             entries.Add(entry);
         }

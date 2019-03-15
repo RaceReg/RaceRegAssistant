@@ -51,8 +51,7 @@ namespace RaceRegAssistant
                 entry.LastName = split[3];
                 entry.FirstName = split[4];
                 entry.Affiliation = split[5];
-                //entry.Time = DateTime.Parse(split[6]);
-                entry.Time = split[6];
+                entry.Time = DateTime.Parse(split[6]);
 
                 lif.AddEntry(entry);
             }
