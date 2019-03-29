@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaceRegAssistant", "RaceReg
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LIFFileViewerDesktop", "LIFFileViewerDesktop\LIFFileViewerDesktop.csproj", "{06165F91-7BFF-452D-BC1B-013F2DBA9509}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EagleEye_To_RunnerCard_LIF_Convertor", "EagleEye_To_RunnerCard_LIF_Convertor\EagleEye_To_RunnerCard_LIF_Convertor.csproj", "{B8A68075-8864-4553-8DBF-2F7820C720D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{06165F91-7BFF-452D-BC1B-013F2DBA9509}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06165F91-7BFF-452D-BC1B-013F2DBA9509}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06165F91-7BFF-452D-BC1B-013F2DBA9509}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8A68075-8864-4553-8DBF-2F7820C720D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8A68075-8864-4553-8DBF-2F7820C720D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8A68075-8864-4553-8DBF-2F7820C720D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8A68075-8864-4553-8DBF-2F7820C720D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
