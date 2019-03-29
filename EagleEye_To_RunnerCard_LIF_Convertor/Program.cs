@@ -10,6 +10,7 @@ namespace EagleEye_To_RunnerCard_LIF_Convertor
     {
         static void Main(string[] args)
         {
+            Console.Write("Starting the RaceRegAssistant Sub Program:\n\t### EagleEye To RunnerCard LIF Convertor ###\n");
         }
     }
 }
